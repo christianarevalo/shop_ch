@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :products
+
+  resources :products do
+    resources :variants
+  end
 
   devise_for :buyers
   get 'buyers' => 'buyers#index', as: :buyers

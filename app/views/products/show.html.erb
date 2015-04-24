@@ -9,6 +9,6 @@
   <strong>Description:</strong>
   <%= @product.description %>
 </p>
-
+<%= link_to 'Variants', product_variants_path(@product) %> |
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

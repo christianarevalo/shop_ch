@@ -37,6 +37,22 @@ class VariantsController < ProductsController
     respond_with(@product)
   end
 
+  def buy
+    if signed_in?
+      @variant = Variant.find(params[:variant_id])
+
+      if @variant.buy(current_buyer)
+
+      else
+        flash[:alert] = "You don't have enough credits"
+      end
+      redirect_to :products
+    else
+      redirect_to :products, alert: 'Please, sign in first.'
+    end
+
+  end
+
   private
     def set_product
       @product = Product.find(params[:product_id])

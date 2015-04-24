@@ -4,8 +4,8 @@ class ProductsController < ApplicationController
   respond_to :html
 
   def index
-    @products = Product.all
-    respond_with(@products)
+    @variants = Variant.available.active.group(:product_id).includes(:product)
+    respond_with(@variants)
   end
 
   def show

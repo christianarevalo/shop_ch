@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424134157) do
+ActiveRecord::Schema.define(version: 20150424144454) do
 
   create_table "buyers", force: true do |t|
     t.string   "name",                                 null: false
@@ -34,11 +34,13 @@ ActiveRecord::Schema.define(version: 20150424134157) do
   add_index "buyers", ["reset_password_token"], name: "index_buyers_on_reset_password_token", unique: true
 
   create_table "coupons", force: true do |t|
-    t.integer  "variants_id"
-    t.string   "code",        null: false
+    t.string   "code",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "variant_id"
   end
+
+  add_index "coupons", ["variant_id"], name: "index_coupons_on_variant_id"
 
   create_table "products", force: true do |t|
     t.string   "title",       null: false

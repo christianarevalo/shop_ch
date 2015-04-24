@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   resources :products do
-    resources :variants
+    resources :variants do
+      post 'buy' => 'variants#buy'
+    end
   end
 
   devise_for :buyers

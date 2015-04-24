@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424130214) do
+ActiveRecord::Schema.define(version: 20150424130521) do
 
   create_table "buyers", force: true do |t|
     t.string   "name",                                 null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20150424130214) do
   add_index "buyers", ["reset_password_token"], name: "index_buyers_on_reset_password_token", unique: true
 
   create_table "products", force: true do |t|
-    t.string   "title"
+    t.string   "title",       null: false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"

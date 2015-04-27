@@ -20,7 +20,7 @@ class VariantsControllerTest < ActionController::TestCase
 
   test "should create variant" do
     assert_difference('Variant.count') do
-      post :create, { product_id: @product, variant: { is_active: @variant.is_active, price: @variant.price, quantity: @variant.quantity } }
+      post :create, { product_id: @product, variant: { is_active: true, price: @variant.price, quantity: @variant.quantity } }
     end
 
     assert_redirected_to product_variant_path(assigns(:product), assigns(:variant))
@@ -37,7 +37,7 @@ class VariantsControllerTest < ActionController::TestCase
   end
 
   test "should update variant" do
-    patch :update, { product_id: @product, id: @variant, variant: { is_active: @variant.is_active, price: @variant.price, quantity: @variant.quantity } }
+    patch :update, { product_id: @product, id: @variant, variant: { is_active: true, price: @variant.price, quantity: @variant.quantity } }
     assert_redirected_to product_variant_path(assigns(:product), assigns(:variant))
   end
 

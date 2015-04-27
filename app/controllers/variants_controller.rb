@@ -15,7 +15,6 @@ class VariantsController < ProductsController
 
   def new
     @variant = @product.variants.new
-    respond_with(@variant)
   end
 
   def edit
@@ -34,7 +33,7 @@ class VariantsController < ProductsController
 
   def destroy
     @variant.destroy
-    respond_with(@product)
+    respond_with(@product, @variant)
   end
 
   def buy
@@ -42,15 +41,14 @@ class VariantsController < ProductsController
       @variant = Variant.find(params[:variant_id])
 
       if @variant.buy(current_buyer)
-
+        flash[:notice] = "Your purchase was successful"
       else
         flash[:alert] = "You don't have enough credits"
       end
-      redirect_to :products
     else
-      redirect_to :products, alert: 'Please, sign in first.'
+      flash[:alert] = 'Please, sign in first.'
     end
-
+    redirect_to :products
   end
 
   private

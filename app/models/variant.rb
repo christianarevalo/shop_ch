@@ -2,6 +2,8 @@ class Variant < ActiveRecord::Base
   belongs_to :product
   has_many :coupons, :dependent => :destroy
 
+  validates_presence_of :product, :is_active, :quantity, :price
+
   def self.active
     where(is_active: true)
   end
@@ -11,17 +13,20 @@ class Variant < ActiveRecord::Base
   end
 
   def self.cheapest
-    order(:price).first
+    order(:price)
+  end
+
+  def self.available_products
+    available.active.cheapest.group(:product_id).includes(:product)
   end
 
   def buy(buyer)
-    if buyer.credits >= self.price
+    if buyer.credits >= self.price && self.quantity > 0 && self.is_active
       transaction do
         buyer.credits -= self.price
         buyer.save!
         self.quantity -= 1
-        code =  Array.new(8){[*'0'..'9'].sample}.join
-        self.coupons.create(variant_id: id, code: code)
+        self.coupons.create(variant_id: id)
         self.save!
       end
       true

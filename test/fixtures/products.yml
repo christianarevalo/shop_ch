@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
+product_1:
+  title: Title 1
   description: MyText
 
-two:
-  title: MyString
+product_2:
+  title: Title 2
+  description: MyText
+
+product_3:
+  title: Title 3
   description: MyText

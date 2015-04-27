@@ -1,11 +1,43 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+variant_1_1:
+  product: product_1
   is_active: false
   price: 1
-  quantity: 1
+  quantity: 10
 
-two:
-  is_active: false
+variant_1_2:
+  product: product_1
+  is_active: true
+  price: 10
+  quantity: 100
+
+variant_1_3:
+  product: product_1
+  is_active: true
+  price: 5
+  quantity: 100
+
+variant_1_4:
+  product: product_1
+  is_active: true
+  price: 3
+  quantity: 0
+
+variant_2_1:
+  product: product_2
+  is_active: true
+  price: 20
+  quantity: 10
+
+variant_2_2:
+  product: product_2
+  is_active: true
   price: 1
-  quantity: 1
+  quantity: 10
+
+variant_3_1:
+  product: product_3
+  is_active: true
+  price: 100
+  quantity: 0

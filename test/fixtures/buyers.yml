@@ -1,9 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+david:
+  name: David
+  email: david@domain.ch
+  encrypted_password: <%= Devise.bcrypt(Buyer, '12345678') %>
   credits: 1
 
-two:
-  name: MyString
-  credits: 1
+michel:
+  name: Michel
+  email: michel@domain.ch
+  encrypted_password: <%= Devise.bcrypt(Buyer, '12345678') %>
+  credits: 1000
+

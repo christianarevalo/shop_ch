@@ -1,12 +1,14 @@
 require 'test_helper'
 
 class ProductsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
-    @product = products(:one)
+    @product = products(:product_1)
   end
 
   test "should get index" do
-    get :index
+    get :index_admin
     assert_response :success
     assert_not_nil assigns(:products)
   end

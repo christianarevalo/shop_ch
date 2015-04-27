@@ -8,6 +8,17 @@
 </head>
 <body>
 
+<div>
+  <% if signed_in? %>
+  <p>
+    <%= current_buyer.email %>
+  </p>
+  <p>
+    credits: <%= current_buyer.credits %>
+  </p>
+  <% end %>
+</div>
+
 <%= yield %>
 
 </body>

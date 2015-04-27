@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       post 'buy' => 'variants#buy'
     end
   end
+  get 'products_admin' => 'products#index_admin'
 
   devise_for :buyers
   get 'buyers' => 'buyers#index', as: :buyers

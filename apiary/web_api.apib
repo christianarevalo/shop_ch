@@ -1,0 +1,35 @@
+## Group Web Services
+API used by external applications (Moosehead, Salesforce)
+
+## Coupons [/api/coupons]
+### Generates a Coupon [POST]
++ Response 200
+
+### Redeems Coupons [POST /api/coupons/redeem]
++ Response 200
+
+### Unredeems Coupons [DELETE /api/coupons/unredeem]
++ Response 200
+
+### Refunds Coupons [POST /api/coupons/refund]
++ Response 200
+
+### Changes Coupons expiration date [POST /api/coupons/expiration_date]
++ Response 200
+
+### Get Coupons for a Buyer [GET /api/coupons/{external_buyer_id}]
++ Response 200
+
+## Coupon [/api/coupons/{coupon_id}]
+### Show a Coupon [GET]
++ Response 200
+
+### Generate a Coupon PDF [GET /api/coupons/{coupon_id}/export]
++ Response 200
+
+## Third Party Codes [/api/custom_codes]
+### Create Third Party Codes [POST]
++ Response 200
+
+### Modify Third Party Codes [PUT]
++ Response 200

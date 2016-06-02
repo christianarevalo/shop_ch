@@ -1,2 +1,3 @@
-apiary/salesforce.apib
-apiary/pp3.apib
+apiary/main.apib
+apiary/natives_api.apib
+apiary/web_api.apib

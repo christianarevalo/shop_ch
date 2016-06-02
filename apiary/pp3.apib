@@ -1,0 +1,146 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# PP3.0 API
+
+Partner Portal 3.0 APIs for Natives App, Moosehead, MyGento and Salesforce.
+
+## Group Native Apps
+API used by the Partner Portal Native App
+
+## Tokens [/api/public/v1/tokens?user_type=merchant_user]
+
+### Request a token [POST]
+
++ Response 200 (application/json)
+    + Attributes (object, required)
+        + object: yPwI165L0mptNQUqxWmbX4cJUBg (string, required)
+
+### Request token status [GET]
++ Request
+    + Headers
+
+            HTTP_X_USER_TOKEN: yPwI165L0mptNQUqxWmbX4cJUBg
+
++ Response 200 (application/json)
+    + Attributes (object)
+        + object (object, required)
+            + logged_in: true (boolean, required)
+            + user (object, required)
+                + id: 123 (number, required)
+
++ Response 400 (application/json)
+    + Attributes (object)
+        + error_codes (array[ErrorTokenCodes], required)
+
+## Authentication [/api/public/v1/merchants]
+
+### Login [PUT /api/public/v1/merchants/login]
+
++ Request (application/json)
+    + Headers
+
+            HTTP_X_USER_TOKEN: yPwI165L0mptNQUqxWmbX4cJUBg
+
+    + Attributes (object)
+        + email: partner@deindeal.ch (string, required)
+        + password: 12345678 (string, required)
+
++ Response 200
+    + Attributes (object)
+        + message: Success (string)
+
++ Response 401
+    + Attributes (object)
+        + error_codes (array[ErrorLoginCodes], required)
+
+### Logout [PUT /api/public/v1/merchants/logout]
+
++ Request (application/json)
+    + Headers
+
+            HTTP_X_USER_TOKEN: yPwI165L0mptNQUqxWmbX4cJUBg
+
++ Response 200
+    + Attributes (object)
+        + message: Success (string)
+
++ Response 400 (application/json)
+    + Attributes (object)
+        + error_codes (array[ErrorTokenCodes], required)
+
+## Coupons [/api/public/v1/coupons/redemptions]
+
+### Redeem a Coupon [POST]
++ Request (application/json)
+    + Headers
+
+            HTTP_X_USER_TOKEN: yPwI165L0mptNQUqxWmbX4cJUBg
+
+    + Attributes (object)
+        + code: 1234ABCD (string, required)
+        + pin: PIN (string, required)
+
++ Response 200
+    + Attributes (object, required)
+        + message: Success (string)
+
++ Response 400 (application/json)
+    + Attributes (object)
+        + error_codes (array[ErrorRedemptionCodes], required)
+
+## Data Structures
+
+### ErrorTokenCodes (enum)
++ tm_1_not_exist - Token Not Found
+
+### ErrorLoginCodes (enum)
++ tm_1_not_exist - Token Not Found
++ common_1_token_missing - Missing Token
++ mc_2_merchant_not_found - Merchant Not Found
++ tm_3_not_authorized - Unauthorized
+
+### ErrorRedemptionCodes (enum)
++ tm_1_not_exist - Token Not Found
++ ol_3_not_authorized - User is not authorized for executing the action
++ rc_1_coupon_already_redeemed - Coupon is already redeemed, it cannot be redeemed once again
++ rc_2_coupon_refunded - Coupon is refunded and it cannot be redeemed
++ rc_3_coupon_not_exist - Coupon cannot be found on the system
++ rc_4_coupon_timeframe_expired - Coupon timeframe has expired
++ rc_5_coupon_redemption_error - Coupon redemption failed
+
+## Group Web Services
+API used by external applications (Moosehead, Salesforce)
+
+## Coupons [/api/coupons]
+### Generates a Coupon [POST]
++ Response 200
+
+### Redeems Coupons [POST /api/coupons/redeem]
++ Response 200
+
+### Unredeems Coupons [DELETE /api/coupons/unredeem]
++ Response 200
+
+### Refunds Coupons [POST /api/coupons/refund]
++ Response 200
+
+### Changes Coupons expiration date [POST /api/coupons/expiration_date]
++ Response 200
+
+### Get Coupons for a Buyer [GET /api/coupons/{external_buyer_id}]
++ Response 200
+
+## Coupon [/api/coupons/{coupon_id}]
+### Show a Coupon [GET]
++ Response 200
+
+### Generate a Coupon PDF [GET /api/coupons/{coupon_id}/export]
++ Response 200
+
+## Third Party Codes [/api/custom_codes]
+### Create Third Party Codes [POST]
++ Response 200
+
+### Modify Third Party Codes [PUT]
++ Response 200
